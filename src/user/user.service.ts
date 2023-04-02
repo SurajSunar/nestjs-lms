@@ -41,6 +41,10 @@ export class UserService {
     return user;
   }
 
+  validateName(fullName: string) {
+    return fullName.length > 4;
+  }
+
   async getUserByUserName(userName: string) {
     // Find user by username
     const user = await this.usersRepository.findOneBy({ fullName: userName });
