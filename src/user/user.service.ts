@@ -42,7 +42,7 @@ export class UserService {
   }
 
   validateName(fullName: string) {
-    return fullName.length > 4;
+    return fullName.length > 10;
   }
 
   async getUserByUserName(userName: string) {
