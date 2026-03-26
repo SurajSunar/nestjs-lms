@@ -1,4 +1,10 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Optional } from '@nestjs/common';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class User {
@@ -13,4 +19,7 @@ export class User {
 
   @Column()
   password: string;
+
+  @CreateDateColumn()
+  lastLogin: Date;
 }

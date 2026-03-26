@@ -6,12 +6,13 @@ import { UserModule } from './user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
-import { User } from './user/entity/user.entity';
+import { ScannerModule } from './scanner/scanner.module';
 
 @Module({
   imports: [
     AuthModule,
     UserModule,
+    ScannerModule,
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -20,8 +21,12 @@ import { User } from './user/entity/user.entity';
       username: 'surbhu',
       password: 'surbhu',
       database: 'nestjs_lms',
-      entities: [User],
-      synchronize: true,
+      synchronize: false,
+      logging: process.env.ENV !== 'production',
+      entities: ['dist/**/*.entity.js'],
+      migrations: ['dist/db/migrations/*.js'],
+      migrationsTableName: 'migrations',
+      migrationsRun: false,
     }),
   ],
   controllers: [AppController],

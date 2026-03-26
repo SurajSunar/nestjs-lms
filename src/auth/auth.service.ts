@@ -16,7 +16,7 @@ export class AuthService {
 
     const user = await this.userService.getUserByEmail(email);
 
-    if (user.password !== password) {
+    if (user?.password !== password) {
       throw new UnauthorizedException('Invalid credentials');
     }
 
