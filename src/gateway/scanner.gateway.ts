@@ -22,12 +22,10 @@ export class ScannerGateway {
     const { sessionId, role } = data;
     if (!this.sessions.has(sessionId)) this.sessions.set(sessionId, {});
     this.sessions.get(sessionId)[role] = client?.id;
-    console.log('sessionId==', this.sessions.get(sessionId));
   }
 
   sendToDesktop(sessionId: string, payload: any) {
     const session = this.sessions.get(sessionId);
-    console.log('sendToDesktop', sessionId, session?.desktop, payload);
     if (session?.desktop)
       this.server.to(session.desktop).emit('scan-result', payload);
   }
