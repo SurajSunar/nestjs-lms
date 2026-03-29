@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as fs from 'fs';
+import { json, urlencoded } from 'express';
 
 async function bootstrap() {
   // Load keys
@@ -11,6 +12,9 @@ async function bootstrap() {
     cert: fs.readFileSync('./secrets/cert.pem'),
   };
   const app = await NestFactory.create(AppModule, { httpsOptions });
+  // 🔥 FIX: increase payload limit
+  app.use(json({ limit: '10mb' }));
+  app.use(urlencoded({ limit: '10mb', extended: true }));
   app.enableCors();
   await app.listen(process.env.PORT ?? 3000, '0.0.0.0');
 }
