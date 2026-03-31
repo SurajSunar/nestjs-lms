@@ -17,6 +17,7 @@ export class ScannerGateway {
     console.log('Connected:', client.id);
   }
 
+  // creating join for connecting socket in frontend
   @SubscribeMessage('join')
   handleJoin(@MessageBody() data: any, @ConnectedSocket() client: Socket) {
     const { sessionId, role } = data;
