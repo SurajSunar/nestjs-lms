@@ -33,4 +33,10 @@ export class UserService {
 
     return user;
   }
+
+  async getUserByUserName(userName: string) {
+    // Find user by username
+    const user = await this.usersRepository.findOneBy({ fullName: userName });
+    return user;
+  }
 }
