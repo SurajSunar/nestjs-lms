@@ -48,7 +48,7 @@ export class UserService {
 
   validateEmailDomain(email: string) {
     //validate with email as gmail
-    return email.length && email.includes('@gmail');
+    return email.length && ['@gmail', 'hotmail'].includes(email);
   }
 
   async getUserByUserName(userName: string) {
