@@ -46,6 +46,10 @@ export class UserService {
     return fullName.length > 20;
   }
 
+  validateEmailDomain(email: string) {
+    return email.length && email.includes('@gmail');
+  }
+
   async getUserByUserName(userName: string) {
     // Find user by username
     const user = await this.usersRepository.findOneBy({ fullName: userName });
