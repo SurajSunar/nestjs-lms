@@ -42,6 +42,7 @@ export class UserService {
   }
 
   validateName(fullName: string) {
+    //adding validation for name with length 20 and more
     return fullName.length > 20;
   }
 
