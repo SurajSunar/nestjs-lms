@@ -3,6 +3,8 @@
 /node_modules
 /build
 /secrets
+/docs
+/security-files
 
 # Logs
 logs
